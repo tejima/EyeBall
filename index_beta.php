@@ -26,7 +26,7 @@ $query->setSpreadsheetQuery($_ENV["QUERY"]);
 $listFeed = $spreadsheetService->getListFeed($query);
 
 $rowData = $listFeed->entries[0]->getCustom();
-
+print_r($rowData);
 $result = array();
 foreach($rowData as $column){
   if($column->getColumnName() == "message"){
@@ -37,6 +37,25 @@ foreach($rowData as $column){
 $result["status"] = "success";
 
 
-$spreadsheetService->updateRow($listFeed->entries[0],array("navi" => "DONE"));
+//$spreadsheetService->updateRow($listFeed->entries[0],array("navi" => "DONE"));
+/*
+$updatedCell = $spreadsheetService->updateCell($row,
+                                               $col,
+                                               $inputValue,
+                                               $spreadsheetKey,
+                                               $worksheetId);
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 echo json_encode($result);
