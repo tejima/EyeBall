@@ -7,9 +7,19 @@ $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
 $client = Zend_Gdata_ClientLogin::getHttpClient($_ENV['ID'], $_ENV['PASSWORD'], $service);
 $spreadsheetService = new Zend_Gdata_Spreadsheets($client);
 
+
+
+$query = new Zend_Gdata_Spreadsheets_DocumentQuery();
+$query->setSpreadSheetKey("0Ao32NvF7NnotdHJlZWFDX2NyZVVQZEZLcWdqR2I4NUE");
+$feed = $spreadsheetService->getWorksheetFeed($query);
+
+print_r($feed);
+exit;
+
+
 $query = new Zend_Gdata_Spreadsheets_ListQuery();
 $query->setSpreadSheetKey("0Ao32NvF7NnotdHJlZWFDX2NyZVVQZEZLcWdqR2I4NUE");
-$query->setWorksheetId(0);
+$query->setWorksheetId("0");
 
 $listFeed = $spreadsheetService->getListFeed($query);
 
