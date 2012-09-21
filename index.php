@@ -1,6 +1,7 @@
 <?php
 
 require_once "Zend/Gdata/Spreadsheets.php";
+require_once "Zend/Gdata/ClientLogin.php";
 
 $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
 $client = Zend_Gdata_ClientLogin::getHttpClient($_ENV['ID'], $_ENV['PASSWORD'], $service);
