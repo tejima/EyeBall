@@ -35,5 +35,7 @@ foreach($rowData as $column){
 }
 
 $result["status"] = "success";
-
 echo json_encode($result);
+
+$spreadsheetService->deleteRow($listFeed->entries[0]);
+
