@@ -25,10 +25,15 @@ $query->setSpreadsheetQuery($_ENV["QUERY"]);
 
 $listFeed = $spreadsheetService->getListFeed($query);
 
-$rowData = $listFeed->entries[1]->getCustom();
+$rowData = $listFeed->entries[0]->getCustom();
 
+$result = array();
 foreach($rowData as $column){
-  echo $column->getColumnName() . " = " . $column->getText() . "\n";
+  if($column->getColumnName() == "message"){
+    $result["message"] = $column->getText();
+  }
 }
 
-echo "DONE";
+$result["status"] = "success";
+
+echo json_encode($result);
