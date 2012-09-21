@@ -21,6 +21,8 @@ $query = new Zend_Gdata_Spreadsheets_ListQuery();
 $query->setSpreadSheetKey("0Ao32NvF7NnotdHJlZWFDX2NyZVVQZEZLcWdqR2I4NUE");
 $query->setWorksheetId("od6");
 
+$query->setSpreadsheetQuery('NAVI=ACTIVE and TIME<9:51');
+
 $listFeed = $spreadsheetService->getListFeed($query);
 
 $rowData = $listFeed->entries[1]->getCustom();
