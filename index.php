@@ -6,14 +6,19 @@ require_once "Zend/Gdata/ClientLogin.php";
 $sheetkey = "0Ao32NvF7NnotdHJlZWFDX2NyZVVQZEZLcWdqR2I4NUE";
 $sheetid = "od6";
 $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
-$client = Zend_Gdata_ClientLogin::getHttpClient($_SERVER['ID'], $_SERVER['PASSWORD'], $service);
+
+
+$id = $_SERVER['ID'] ? $_SERVER['ID'] : $_ENV['ID'];
+$password = $_SERVER['PASSWORD'] ? $_SERVER['PASSWORD'] : $_ENV['ID'];
+$query_string = $_SERVER['QUERY'] ? $_SERVER['QUERY'] : $_SERVER['QUERY'];
+$client = Zend_Gdata_ClientLogin::getHttpClient($id , $password, $service);
 $spreadsheetService = new Zend_Gdata_Spreadsheets($client);
 
 $query = new Zend_Gdata_Spreadsheets_ListQuery();
 $query->setSpreadSheetKey($sheetkey);
 $query->setWorksheetId($sheetid);
 
-$query->setSpreadsheetQuery($_ENV["QUERY"]);
+$query->setSpreadsheetQuery($query_string);
 $listFeed = $spreadsheetService->getListFeed($query);
 $rowData = $listFeed->entries[0]->getCustom();
 
