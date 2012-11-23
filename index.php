@@ -21,6 +21,7 @@ $result = array();
 
 $data = $listFeed->entries[0]->getCustomByName("message");
 
+
 foreach ($listFeed->entries as $line) {
   $status = $line->getCustomByName("status");
   if($status == DONE){
@@ -36,9 +37,10 @@ foreach ($listFeed->entries as $line) {
   $newline["status"] = "DONE";
   //$spreadsheetService->deleteRow($listFeed->entries[0]);
   $spreadsheetService->updateRow($line,$newline);
-
-  break;
+  exit();
 }
+$result["status"] = "none";
+echo json_encode($result);
 
 
 /*
