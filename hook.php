@@ -1,9 +1,15 @@
 <?php
-require_once "Gdata/Spreadsheets.php";
-require_once "Gdata/ClientLogin.php";
-$result = mail( "tejicubetejicube@ezweb.ne.jp" , "HOOK" , "HOOK BODY" ,"From: tejima@tejimaya.com");
 
+//phpinfo();
+require_once "Zend/Gdata/Spreadsheets.php";
+require_once "Zend/Gdata/ClientLogin.php";
 
-echo "TEST";
+$key = "0Ao32NvF7NnotdHJlZWFDX2NyZVVQZEZLcWdqR2I4NUE";
+$sheetid = "od6";
 
-echo "RESULT: $result";
+$service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
+$client = Zend_Gdata_ClientLogin::getHttpClient($_SERVER['ID'], $_SERVER['PASSWORD'], $service);
+$spreadsheetService = new Zend_Gdata_Spreadsheets($client);
+
+$insertedListEntry = $spreadsheetService->insertRow(array("message"=>"hook"), $key, $sheetid);
+
