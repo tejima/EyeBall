@@ -16,15 +16,13 @@ try{
 	$client = Zend_Gdata_ClientLogin::getHttpClient($id , $password, $service);
 	$spreadsheetService = new Zend_Gdata_Spreadsheets($client);
 
+	$query_string = "";
 	$query = new Zend_Gdata_Spreadsheets_ListQuery();
 	$query->setSpreadSheetKey($sheetkey);
 	$query->setWorksheetId($sheetid);
-
-/*
 	$query->setSpreadsheetQuery($query_string);
 	$listFeed = $spreadsheetService->getListFeed($query);
-	$rowData = $listFeed->entries[0]->getCustom();
-*/
+
 	$result = array();
 	foreach ($listFeed->entries as $line) {
 	  $status = $line->getCustomByName("status");
