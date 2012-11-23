@@ -21,7 +21,7 @@ $query = new Zend_Gdata_Spreadsheets_ListQuery();
 $query->setSpreadSheetKey("0Ao32NvF7NnotdHJlZWFDX2NyZVVQZEZLcWdqR2I4NUE");
 $query->setWorksheetId("od6");
 
-$query->setSpreadsheetQuery($_ENV["QUERY"]);
+$query->setSpreadsheetQuery($_ENV["QUERY_BETA"]);
 
 $listFeed = $spreadsheetService->getListFeed($query);
 
