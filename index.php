@@ -1,5 +1,5 @@
 <?php
-
+exit();
 //phpinfo();
 require_once "Zend/Gdata/Spreadsheets.php";
 require_once "Zend/Gdata/ClientLogin.php";
