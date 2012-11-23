@@ -11,5 +11,6 @@ $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
 $client = Zend_Gdata_ClientLogin::getHttpClient($_SERVER['ID'], $_SERVER['PASSWORD'], $service);
 $spreadsheetService = new Zend_Gdata_Spreadsheets($client);
 
-$insertedListEntry = $spreadsheetService->insertRow(array("message"=>"hook"), $key, $sheetid);
+$get = json_encode($_REQUEST);
+$insertedListEntry = $spreadsheetService->insertRow(array("message"=>$get), $key, $sheetid);
 
