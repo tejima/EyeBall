@@ -6,6 +6,7 @@ require_once "Zend/Gdata/ClientLogin.php";
 $sheetkey = "0Ao32NvF7NnotdHJlZWFDX2NyZVVQZEZLcWdqR2I4NUE";
 $sheetid = "od6";
 $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
+header("Access-Control-Allow-Origin: *");
 
 try{
 
