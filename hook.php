@@ -11,7 +11,19 @@ $service = Zend_Gdata_Spreadsheets::AUTH_SERVICE_NAME;
 $client = Zend_Gdata_ClientLogin::getHttpClient($_SERVER['ID'], $_SERVER['PASSWORD'], $service);
 $spreadsheetService = new Zend_Gdata_Spreadsheets($client);
 
-$get = json_encode($_REQUEST);
+$data = json_decode($_REQUEST);
+
 $target = $_REQUEST['target'] ? $_REQUEST['target'] : "none";
-$insertedListEntry = $spreadsheetService->insertRow(array("target"=>$target , "message"=>$get), $key, $sheetid);
+$message = "a";
+switch($target){
+	case "github":
+		$project_name = $data["payload"]["repository"]["name"];
+		$owner_name = $data["payload"]["repository"]["owner"]["name"];
+		$message = "$project_name に $owner_name さんがコミットしました。";
+	case "travis":
+		$project_name = $data["payload"]["repository"]["name"];
+		$owner_name = $data["payload"]["repository"]["owner"]["name"];
+		$message = "$project_name に $owner_name さんのテスト";
+}
+$insertedListEntry = $spreadsheetService->insertRow(array("target"=>$target ,"theme"=>"success","body" => $message, "debug"=>$_REQUEST), $key, $sheetid);
 
